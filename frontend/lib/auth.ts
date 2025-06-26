@@ -117,7 +117,7 @@ export async function decideSession() {
 }
 
 //validate csrf tokens from input form
-export async function checkCsrfToken(csrfToken:string):Promise<boolean| undefined> {
+export async function checkCsrfToken(csrfToken:string):Promise<boolean> {
     const user_cookies = await cookies();
     const session_id = user_cookies.get('session')?.value??null;
     const user_cookie_csrfToken = user_cookies.get('csrfToken')?.value??null
@@ -127,6 +127,7 @@ export async function checkCsrfToken(csrfToken:string):Promise<boolean| undefine
         //checks if token is valid
         if(session_information === null){
             console.log("Error when connecting to redis")
+            return false
         }
         else{
             //checks if theres a token
@@ -165,6 +166,7 @@ export async function checkCsrfToken(csrfToken:string):Promise<boolean| undefine
             }
         }
     }
+    return false
 }
 
 

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { decideSession, isloggedIn } from "../lib/auth";
+import { checkCsrfToken, decideSession, isloggedIn } from "../lib/auth";
 import { host } from "../lib/auth";
+import { getCsrfToken } from "../lib/frontend";
 
 
 export async function middleware(req: NextRequest){    
@@ -14,6 +15,12 @@ export async function middleware(req: NextRequest){
         if(! await authMiddleware()){
             //return user to th login page is it is not authentified
             return NextResponse.redirect(host + '/login/')
+        }
+    }
+
+    if(req.method!='GET'){
+        if((await checkCsrfToken(getCsrfToken(req))!)){
+
         }
     }
 
