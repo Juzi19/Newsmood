@@ -29,9 +29,9 @@ Denn mal ehrlich: Wer hat schon Zeit, zig Artikel zu lesen und sich dann noch Ge
 | Teil                | Technologie            |
 |---------------------|-----------------------|
 | Frontend            | Next.js + TypeScript   |
-| Auth                | NextAuth.js (oder ähnlich) |
+| Styling             | Tailwind CSS 💨
 | Backend API         | FastAPI                |
-| Machine Learning    | PyTorch (Sigmoid Regression) |
+| Machine Learning    | PyTorch (Sigmoid Regression, LSTM) |
 | Datenformat Export  | Excel (XLSX)           |
 
 ---
