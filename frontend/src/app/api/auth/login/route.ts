@@ -13,26 +13,17 @@ type LoginDataType = {
 
 export async function POST(req:NextRequest){
     const {data}:LoginDataType= await req.json();
-    const csrfToken = getCsrfToken(req);
-    if (!csrfToken){
-        return NextResponse.redirect('/login')
-    }
-    //check csrfToken
-    if (await checkCsrfToken(csrfToken)){
-        if(await rateLimitingLogin(data.email)){
-            const state = (await identificateUser(data.email, data.password))!
-            if(state.identification){
-                await login(state.user!._id.toString())
-                return NextResponse.json({"login": true}, {status: 200})
-            }
-            else{
-                return NextResponse.json({"login": false}, {status: 403})
-            }
+    if(await rateLimitingLogin(data.email)){
+        const state = (await identificateUser(data.email, data.password))!
+        if(state.identification){
+            await login(state.user!._id.toString())
+            return NextResponse.json({"login": true}, {status: 200})
         }
         else{
-            return new NextResponse("Acces Denied - please try again in a few seconds", {status: 401})
+            return NextResponse.json({"login": false}, {status: 403})
         }
-
     }
-    return NextResponse.json({"message": "CSRFTOKEN invalid"}, {status: 401})
+    else{
+        return new NextResponse("Acces Denied - please try again in a few seconds", {status: 401})
+    }
 }

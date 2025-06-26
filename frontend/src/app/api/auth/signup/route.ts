@@ -9,16 +9,9 @@ import { hashPassword } from "../../../../../lib/mongodb";
 // Create user account
 export async function POST(req:NextRequest){
     const {data} = await req.json();
-    const csrfToken = getCsrfToken(req)!;
 
     //extract key values from the request
     const {email, username, password} = data;
-
-    //check csrfToken
-    if (!(await checkCsrfToken(csrfToken))){
-        // return forbidden for invalid csrfTokens
-        return NextResponse.json({"message": "CSRFToken invalid"}, { status: 403})
-    }
 
     // creating a new User Entry and sanitizing data
     const newUserEntry:UserEntry = {

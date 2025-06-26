@@ -11,13 +11,7 @@ import sanitize from "mongo-sanitize";
 // creating new Searches
 export async function POST(req:NextRequest){
     const {data} = await req.json();
-    const csrfToken = getCsrfToken(req);
-    if (!csrfToken){
-        return NextResponse.redirect('/login')
-    }
-
-    //check csrfToken
-        if (await checkCsrfToken(csrfToken) && await isloggedIn()){
+        if (await isloggedIn()){
             // fetch the user from the database
 
             // await mongo client

@@ -10,13 +10,8 @@ export async function POST(req:NextRequest) {
     if(!sentimentObjectArr){
         return new NextResponse("Sentiment Object data required", {status: 400})
     }
-    // read csrf token from request headers
-    const csrfToken = getCsrfToken(req);
-    if(!csrfToken){
-        return new NextResponse("CSRF Token missing", {status: 401})
-    }
     // auth user and check csrfToken
-    if (await checkCsrfToken(csrfToken) && await isloggedIn()){
+    if (await isloggedIn()){
         const res = await fetch(`${api}/xlsx`, {
                     method: "POST",
                     headers: {

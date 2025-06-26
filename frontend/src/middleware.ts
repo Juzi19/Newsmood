@@ -18,9 +18,16 @@ export async function middleware(req: NextRequest){
         }
     }
 
+    // centralized approach to check CSRF Tokens
     if(req.method!='GET'){
-        if((await checkCsrfToken(getCsrfToken(req))!)){
-
+        const csrfToken = getCsrfToken(req);
+        if(!csrfToken){
+            return new NextResponse("CSRF Token missing", {status: 403})
+        }
+        // return a new NextReponse if csrf Token is invalid
+        else if(!(await checkCsrfToken(csrfToken))){
+            console.warn("CSRF failed for", req.url, req.method);
+            return new NextResponse("Wrong CSRF Token", {status: 403})
         }
     }
 

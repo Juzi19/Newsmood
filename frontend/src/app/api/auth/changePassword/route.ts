@@ -5,12 +5,8 @@ import { changePassword} from "../../../../../lib/mongodb";
 
 export async function PUT(req:NextRequest) {
     const {id, password}: {id:string, password:string} = await req.json();
-    const csrfToken = getCsrfToken(req);
-    if (!csrfToken){
-        return new NextResponse("CSRF Token missing", {status: 403});
-    }
     //check if user is logged in and has a csrfToken
-    if(await isloggedIn() && await checkCsrfToken(csrfToken) && id == await getUserID()){
+    if(await isloggedIn() && id == await getUserID()){
         //apply changes in the DB
         const status = await changePassword(id, password);
         if(!status.success){
