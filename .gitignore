@@ -1,0 +1,76 @@
+# === Python / Django ===
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+*.sqlite3
+db.sqlite3
+*.log
+*.pot
+*.py[cod]
+*.so
+
+# Django specific
+*.db
+*.sqlite3
+/media
+/staticfiles
+/static_root
+/local_settings.py
+/secrets.json
+
+# PyTorch & ML models
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.h5
+checkpoints/
+runs/
+logs/
+__pycache__/
+.ipynb_checkpoints
+.DS_Store
+
+# === Node.js / Next.js frontend ===
+node_modules/
+.next/
+out/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build output
+dist/
+build/
+coverage/
+*.tsbuildinfo
+
+# === OS and Editor files ===
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# === General env/config ===
+.env
+.env.*
+*.bak
+*.orig
+*.tmp
+
+# === Docker (if used) ===
+*.pid
+*.seed
+docker-compose.override.yml
+
+frontend/node_modules
