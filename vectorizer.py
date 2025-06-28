@@ -86,7 +86,8 @@ class Word2Ind():
         Returns:
             vector(torch.tensor): Tensor with the proper ecoding
         """
-        vector = torch.zeros((len(seq), len(seq[0])), dtype=torch.int32)
+        #vector = torch.zeros((len(seq), len(seq[0])), dtype=torch.int32)
+        vector = torch.zeros((len(seq), max(30,len(seq[0]))), dtype=torch.int32)
         #print(vector.shape)
         for ind, row in enumerate(seq):
             for i, token in enumerate(row):

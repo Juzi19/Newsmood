@@ -149,7 +149,7 @@ export async function checkCsrfToken(csrfToken:string):Promise<boolean> {
                 const newToken = generateSessionID();
                 session_information.csrf_token = newToken;
                 session_information.csrf_valid = new Date(Date.now() + csrf_validity);
-                const expires = session_information.csrf_valid
+                const expires = session_information.csrf_valid;
                 user_cookies.delete("csrfToken");
                 user_cookies.set("csrfToken", newToken, {expires,httpOnly: true, sameSite:'strict', secure:true })
                 

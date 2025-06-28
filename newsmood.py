@@ -10,6 +10,9 @@ from mymodel import SentimentLSTM
 from io import BytesIO
 from openpyxl import Workbook
 from openpyxl.styles import Font
+import math
+
+BATCH_SIZE=32
 
 # inits global variables
 
@@ -75,6 +78,7 @@ def evaluate_articles(articles:list):
 
     #splitting the articles array up to use them in the model
     print("Analyze sentiment")
+    features:list[torch.Tensor] = []
     for i,article in enumerate(articles):
         if article == None or article["title"] == None or article["description"] == None:
             continue
@@ -83,33 +87,44 @@ def evaluate_articles(articles:list):
         description_tokens = tokenizer.load_text(article["description"])
 
         # encode tokens
-        title_features = vectorizer.encode([title_tokens])
-        description_features = vectorizer.encode([description_tokens])
+        title_features = vectorizer.encode([title_tokens]).squeeze()[:30]
+        description_features = vectorizer.encode([description_tokens]).squeeze()[:30]
 
-        # clipping the max seq to length 30 and move to gpu
-        title_features = title_features[:30].to(device)
-        #padde tensor
-        description_features = description_features[:30].to(device)
+        features.append(title_features)
+        features.append(description_features)
+    
+    # stack tensors together
+    features = torch.stack(features).to(device)
+
+    model.eval()
+
+    #Forward Data thorugh the model
+    
+    for i in range(0,math.ceil(len(articles)*2/BATCH_SIZE)):
+
+        start = i * BATCH_SIZE
+        end = min((i + 1) * BATCH_SIZE, len(features))
+
+        batch = [features[j] for j in range(start, end)]  # Liste von 1D-Tensoren
+        batch = torch.stack(batch)
+        batch.to(device)
+
+        targets = model.forward(batch) #[title2, desc1, title2, desc2]
+
+        for x in range(0, end-start, 2):
 
 
-        # setting model in eval mode
-        model.eval()
-
-        # forward data in the model
-        pred_title = model.forward(title_features).item()
-        pred_description = model.forward(description_features).item()
-
-        print(i/len(articles))
+            art_ind = i*0.5*BATCH_SIZE
 
 
-        #add targets from the model to the dictionary
-        data["sentiment"].append({
-            "date": article["publishedAt"],
-            "title": article["title"],
-            "title_sentiment": pred_title,
-            "description": article["description"],
-            "description_sentiment": pred_description
-        })
+            #add targets from the model to the dictionary
+            data["sentiment"].append({
+                "date": articles[int(x/2+art_ind)]["publishedAt"],
+                "title": articles[int(x/2+art_ind)]["title"],
+                "title_sentiment": float(targets[x]),
+                "description": articles[int(x/2+art_ind)]["description"],
+                "description_sentiment": float(targets[x+1])
+            })    
     
     return data
 
