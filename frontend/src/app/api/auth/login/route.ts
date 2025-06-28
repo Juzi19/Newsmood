@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getCsrfToken } from "../../../../../lib/frontend";
-import { createUser, identificateUser, UserEntry } from "../../../../../lib/mongodb";
-import { checkCsrfToken, host, login } from "../../../../../lib/auth";
+import { identificateUser} from "../../../../../lib/mongodb";
+import { login } from "../../../../../lib/auth";
 import { rateLimitingLogin } from "../../../../../lib/security";
 
 type LoginDataType = {
@@ -24,6 +23,6 @@ export async function POST(req:NextRequest){
         }
     }
     else{
-        return new NextResponse("Acces Denied - please try again in a few seconds", {status: 401})
+        return new NextResponse("Acces Denied - please try again in a few seconds", {status: 429})
     }
 }

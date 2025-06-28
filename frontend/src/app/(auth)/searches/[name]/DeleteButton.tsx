@@ -17,7 +17,6 @@ export default function DeleteButton({searchName}:{searchName:string}){
                 "X-CSRF-TOKEN": csrfToken!
             }
         });
-        const data = await response.json();
         if(response.ok){
             router.push('/searches')
         }

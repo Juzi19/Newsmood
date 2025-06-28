@@ -24,6 +24,7 @@ export async function sendEmail(emailData:{
         return true
     }
     catch(error){
+        console.warn(error)
         return false
     }
 }

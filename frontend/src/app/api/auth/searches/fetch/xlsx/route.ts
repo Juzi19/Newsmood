@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { SentimentObject } from "@/components/ResultsDisplay";
-import { getCsrfToken } from "../../../../../../../lib/frontend";
-import { checkCsrfToken, isloggedIn } from "../../../../../../../lib/auth";
+import { isloggedIn } from "../../../../../../../lib/auth";
 import { api } from "../../../../../../../lib/auth";
 
 export async function POST(req:NextRequest) {

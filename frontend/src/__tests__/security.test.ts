@@ -41,7 +41,7 @@ describe('rateLimiter', ()=>{
   })
   it("check if rate limiter works for a new username", async ()=>{
     const username="Max"
-    let res = await rateLimitingLogin(username);
+    const res = await rateLimitingLogin(username);
     expect(res).toBe(true);
   })
 })

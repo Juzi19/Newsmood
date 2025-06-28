@@ -18,10 +18,11 @@ class Trainer():
 
         #Try loading the model
         try:
-            self.model.load_state_dict(torch.load(pathname))
+            self.model.load_state_dict(torch.load(pathname, map_location=self.device))
         except FileNotFoundError:
             print("Cannot find a pretrained model")
-            pass
+        except RuntimeError:
+            print("[WARN] Cannot load weights in a cpu enviroment from memory")
         
         # initializing train and test pipeline
         mypipe = Pipeline("train")

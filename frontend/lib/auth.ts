@@ -1,8 +1,8 @@
 import redis from "./redis"
 import {cookies} from "next/headers"
 
-export const host = 'http://localhost:3000';
-export const api = "http://127.0.0.1:5000";
+export const host = process.env.HOST;
+export const api = process.env.API;
 
 
 // set validity for tokens and keys
@@ -47,9 +47,7 @@ export async function startSession(){
     expires = session_information.csrf_valid
     user_cookies.set("csrfToken", session_information.csrf_token, {expires,httpOnly: false, sameSite:'strict', secure:true })
 
-    await redis.set(session_id, session_information)
-    await redis.expire(session_id, validity/1000)
-
+    await redis.set(session_id, session_information, {ex: validity/1000})
 }
 
 // extend an older session
@@ -62,8 +60,7 @@ export async function extendSession(old_session_id:string, session_information:S
     const session_id = generateSessionID();
 
     // save the new session to redis
-    await redis.set(session_id, session_information)
-    await redis.expire(session_id, validity/1000)
+    await redis.set(session_id, session_information, {ex: validity/1000})
 
     return session_id
 }
@@ -106,8 +103,7 @@ export async function decideSession() {
                 user_cookies.set("csrfToken", session_information.csrf_token, {expires,httpOnly: false, sameSite:'strict', secure:true });
 
                 //save to redis
-                await redis.set(session_id, session_information)
-                await redis.expire(session_id, validity/1000)
+                await redis.set(session_id, session_information, {ex: validity/1000})
             }
 
         }
@@ -143,8 +139,7 @@ export async function checkCsrfToken(csrfToken:string):Promise<boolean> {
                     user_cookies.set("csrfToken", session_information.csrf_token, {expires,httpOnly: false, sameSite:'strict', secure:true })
 
                     //save to redis
-                    await redis.set(session_id, session_information)
-                    await redis.expire(session_id, validity/1000)
+                    await redis.set(session_id, session_information, {ex: validity/1000})
                 }
                 return state
             }
@@ -159,8 +154,7 @@ export async function checkCsrfToken(csrfToken:string):Promise<boolean> {
                 user_cookies.set("csrfToken", newToken, {expires,httpOnly: true, sameSite:'strict', secure:true })
                 
                 //save to redis
-                await redis.set(session_id, session_information)
-                await redis.expire(session_id, validity/1000)
+                await redis.set(session_id, session_information, {ex:validity/1000})
                 
                 return false
             }
@@ -182,7 +176,7 @@ export async function login(user_id:string) {
         else{
             //saving user id to the session id
             session_information.user_id = user_id;
-            redis.set(session_id, session_information);
+            redis.set(session_id, session_information, {ex:validity/1000});
         }
     }
 }
@@ -238,14 +232,14 @@ export async function logout() {
         else{
             //saving user id = null to the session id
             session_information.user_id = null;
-            redis.set(session_id, session_information);
+            redis.set(session_id, session_information, {ex:validity/1000});
         }
     }
 }
 
 
 
-function generateSessionID(length: number = 32){
+function generateSessionID(){
     return crypto.randomUUID();
 }
 

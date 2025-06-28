@@ -25,7 +25,7 @@ export function getCsrfToken(req:NextRequest){
 
   }
   catch(error){
-    console.log("CSRF Token missing or any other error")
+    console.log("CSRF Token missing or any other error", error)
     return null
   }
 }

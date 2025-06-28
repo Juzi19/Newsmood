@@ -20,7 +20,7 @@ export async function POST(req:NextRequest){
             const usersCollection = db.collection<UserEntry>("users");
             const userId = await getUserID();
             const id = new ObjectId(userId!);
-            let {searches} = (await usersCollection.findOne({ _id:id }))!;
+            const {searches} = (await usersCollection.findOne({ _id:id }))!;
             
             //add new search to mongo and encode it
             searches.push(encodeURIComponent(sanitize(data.name)));

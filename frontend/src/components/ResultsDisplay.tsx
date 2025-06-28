@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link";
-import { getCookie, getCsrfToken } from "../../lib/frontend";
+import { getCookie} from "../../lib/frontend";
 import { useRef } from "react";
 
 // Type Structure see format of API response
@@ -27,7 +27,7 @@ export default function ResultsDisplay(props: ResultsStructure){
     const buttonRef = useRef<HTMLButtonElement>(null)
     
     let averageMood = 0;
-    for(let entry of entries){
+    for(const entry of entries){
         averageMood += entry.title_sentiment + entry.description_sentiment;
     }
     if(entries.length>0){

@@ -6,7 +6,7 @@ import sanitize from 'mongo-sanitize';
 
 
 
-let uri = process.env.MONGO_DB_USER_CONNECTION_STRING;
+const uri = process.env.MONGO_DB_USER_CONNECTION_STRING;
 
 if (!uri) {
   throw new Error("Please define MONGO_DB_USER_CONNECTION_STRING in your .env.local");

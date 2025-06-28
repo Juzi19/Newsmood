@@ -117,3 +117,5 @@ next-env.d.ts
 
 
 frontend/node_modules/
+
+Dockerfile

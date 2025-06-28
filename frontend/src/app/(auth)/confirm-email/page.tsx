@@ -26,7 +26,6 @@ export default function ConfirmEmail(){
                 "emailPin": pin
             }})
         })
-        const body = await res.json();
         if(!res.ok){
             setMessage("Falsche Pin")
         }

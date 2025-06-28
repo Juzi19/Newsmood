@@ -1,0 +1,29 @@
+# Node/Frontend-Projekte
+frontend/
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+dist/
+build/
+
+# IDE/Editoren
+.vscode/
+.idea/
+
+# Env-Dateien
+.env
+.env.*
+
+# Git
+.git/
+.gitignore
+
+# Docker selbst
+Dockerfile
+.dockerignore

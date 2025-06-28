@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import { getCookie } from "../../../../lib/frontend";
 import Link from "next/link";
 import { Sansita } from "next/font/google";
@@ -41,6 +41,9 @@ export default function Login(){
         const body = await res.json()
         if (!body.login){
             setMessage("Falsche Login Daten");
+        }
+        if(res.status==429){
+            setMessage("Bitte in ein paar Sekunden erneut versuchen")
         }
         if(res.ok){
             router.push('/start');

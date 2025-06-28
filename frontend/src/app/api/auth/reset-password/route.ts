@@ -1,6 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getCsrfToken } from "../../../../../lib/frontend";
-import { checkCsrfToken } from "../../../../../lib/auth";
 import { resetPassword } from "../../../../../lib/mongodb";
 
 export async function POST(req: NextRequest){

@@ -25,7 +25,8 @@ print(f"Using device {device}")
 
 #Try loading the net
 try:
-    model.load_state_dict(torch.load('C:/Users/justu/Documents/CS/Machine_Learning/sentiment_analysis/data/model_weights.pth'))
+    model.load_state_dict(torch.load('data/model_weights.pth',map_location=device))
+    print("Model successfully loaded")
 except FileNotFoundError:
     print("No trained weights found")
     exit(1)
@@ -73,7 +74,8 @@ def evaluate_articles(articles:list):
     }
 
     #splitting the articles array up to use them in the model
-    for article in articles:
+    print("Analyze sentiment")
+    for i,article in enumerate(articles):
         if article == None or article["title"] == None or article["description"] == None:
             continue
         # tokenize title and description
@@ -86,6 +88,7 @@ def evaluate_articles(articles:list):
 
         # clipping the max seq to length 30 and move to gpu
         title_features = title_features[:30].to(device)
+        #padde tensor
         description_features = description_features[:30].to(device)
 
 
@@ -95,6 +98,9 @@ def evaluate_articles(articles:list):
         # forward data in the model
         pred_title = model.forward(title_features).item()
         pred_description = model.forward(description_features).item()
+
+        print(i/len(articles))
+
 
         #add targets from the model to the dictionary
         data["sentiment"].append({

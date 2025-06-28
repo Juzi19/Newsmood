@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getCsrfToken } from "../../../../../lib/frontend";
-import { checkCsrfToken, getUserID } from "../../../../../lib/auth";
+import { getUserID } from "../../../../../lib/auth";
 import clientPromise from "../../../../../lib/mongodb";
 import { UserEntry } from "../../../../../lib/mongodb";
 import { ObjectId } from "mongodb";

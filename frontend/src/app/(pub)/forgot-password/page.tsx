@@ -1,10 +1,8 @@
 "use client"
 
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import { getCookie } from "../../../../lib/frontend";
-import Link from "next/link";
 import { Sansita } from "next/font/google";
-import { useRouter } from "next/navigation";
 
 const sansita = Sansita({
     subsets: ['latin'],
@@ -15,7 +13,6 @@ const sansita = Sansita({
 export default function ForgotPassword(){
 
     const [message, setMessage] = useState("");
-    const router = useRouter();
 
 
     async function handleSubmit(e:any){

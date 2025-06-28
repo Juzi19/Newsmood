@@ -1,0 +1,24 @@
+# Node Modules (werden im Container installiert)
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Build-Ausgaben, lokale Entwicklung
+.next
+out
+
+# Logfiles
+logs
+*.log
+
+# MacOS/Windows Dateien
+.DS_Store
+Thumbs.db
+
+# Editor Dateien
+.vscode
+.idea
+
+# Sonstiges
+coverage
+*.tgz

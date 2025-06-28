@@ -1,11 +1,7 @@
-import {Geist_Mono, Sansita} from 'next/font/google';
+import {Sansita} from 'next/font/google';
 import Link from 'next/link';
+import Logout from '@/components/Logout';
 
-const geistmono = Geist_Mono({
-  subsets: ['latin'],
-  weight: ['400'],
-  variable: '--font-geist-mono'
-})
 
 const sansita = Sansita({
     subsets: ['latin'],
@@ -25,10 +21,7 @@ export default function RootLayout({
           <Link href='/start'>
             <h1 className={`${sansita.className} text-xl`}>newsmood</h1>
           </Link>
-          
-            <form method="POST" action="/api/auth/logout" className="ml-auto">
-                <input type="submit" value="Logout" className={`${geistmono.className} px-2 py-1 bg-amber-300 my-1 rounded-xl hover:opacity-80`}/>
-            </form>
+          <Logout></Logout>
         </header>
         <main>
             {children}  

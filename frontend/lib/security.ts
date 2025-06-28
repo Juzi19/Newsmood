@@ -1,4 +1,3 @@
-import { login } from "./auth";
 import redis from "./redis";
 
 export function generateSecureTempPassword(length = 12): string {
@@ -15,10 +14,9 @@ export async function rateLimitingLogin(username:string){
   if(Number(loginAttempts)>8){
     return false
   }
-  else if(!login){
-    await redis.set(username, 1);
-    //reset bucket after 60 secs
-    await redis.expire(username, 8);
+  else if(loginAttempts=="0"){
+    // rate limiting for 30 secs
+    await redis.set(username, 1, { ex: 30 });
   }
   else{
     await redis.incr(username)

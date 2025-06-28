@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { checkCsrfToken, getUserID, isloggedIn } from "../../../../../lib/auth";
-import { getCsrfToken } from "../../../../../lib/frontend";
+import { getUserID, isloggedIn } from "../../../../../lib/auth";
 import { changePassword} from "../../../../../lib/mongodb";
 
 export async function PUT(req:NextRequest) {

@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getCsrfToken } from "../../../../../lib/frontend";
-import { checkCsrfToken, host } from "../../../../../lib/auth";
-import { changePassword, createToken, getUserIDFromEmail } from "../../../../../lib/mongodb";
-import { generateSecureTempPassword } from "../../../../../lib/security";
+import { host } from "../../../../../lib/auth";
+import { createToken, getUserIDFromEmail } from "../../../../../lib/mongodb";
 import { sendEmail } from "../../../../../lib/nodemailer";
 
 

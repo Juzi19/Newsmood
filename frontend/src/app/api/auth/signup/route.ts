@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getCsrfToken } from "../../../../../lib/frontend";
-import { checkCsrfToken, login } from "../../../../../lib/auth";
+import { login } from "../../../../../lib/auth";
 import { createUser, UserEntry } from "../../../../../lib/mongodb";
 import { randomInt } from "crypto";
 import sanitize from 'mongo-sanitize';
@@ -30,7 +29,7 @@ export async function POST(req:NextRequest){
     if(userData.success){
         console.log("User created successfully", userData.insertedId)
         // authetificate the newly created user
-        login(userData.insertedId?.toString()!)
+        login(userData.insertedId!.toString())
         //if user was created successfully
         return NextResponse.json({"message":"Benutzer erfolgreich erstellt"}, {status: 201})
     }

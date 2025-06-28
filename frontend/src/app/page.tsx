@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import {Geist_Mono, Sansita} from 'next/font/google';
 
 const geistmono = Geist_Mono({
