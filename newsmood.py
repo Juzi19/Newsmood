@@ -75,6 +75,9 @@ def evaluate_articles(articles:list):
         "articles": articles,
         "sentiment": []
     }
+    # empty articles return
+    if len(articles) == 0 :
+        return data
 
     #splitting the articles array up to use them in the model
     print("Analyze sentiment")
