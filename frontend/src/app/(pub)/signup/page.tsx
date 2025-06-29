@@ -48,7 +48,7 @@ export default function SignUp(){
         }
     }
     return (
-        <div className="w-full flex justify-center items-center flex-col h-[100vh]">
+        <div className="w-full flex justify-center items-center flex-col h-[100dvh]">
             <h1 className="text-2xl">Neues Konto</h1>
             <h2 className={`${sansita.className}`}>newsmood</h2>
 

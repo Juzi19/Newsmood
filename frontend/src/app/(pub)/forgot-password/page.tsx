@@ -46,7 +46,7 @@ export default function ForgotPassword(){
 
 
     return(
-    <div className="w-full flex h-[100vh] items-center justify-center flex-col">
+    <div className="w-full flex h-[100dvh] items-center justify-center flex-col">
         <h1 className="text-2xl">Passwort vergessen</h1>
         <h2 className={`${sansita.className}`}>newsmood</h2>
 

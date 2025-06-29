@@ -9,7 +9,7 @@ export default async function SearchName({params}:{params:Promise<{name:string}>
     //note: double checking with user searches is unnecessary, since all user have permissions fetch news reports and sentiment data from the api 
     
     return(
-        <div className="flex items-center justify-center w-full h-[90vh] flex-col">
+        <div className="flex items-center justify-center w-full h-[90dvh] flex-col">
             <h1 className="text-2xl">
                 Newsanalyse
             </h1>

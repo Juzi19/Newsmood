@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <div>
       {/* Header homepage*/}
-      <div className={`flex bg-white h-[10vh] items-center border-b-2 border-gray-200 ${geistmono.className}`}>
+      <div className={`flex bg-white h-[10dvh] items-center border-b-2 border-gray-200 ${geistmono.className}`}>
         <Link href='/' className="ml-3 text-2xl text-black">NewsMood</Link>
         <Link href='/login' className="bg-black font-bold text-l text-white rounded-2xl mr-2 px-3 py-1 ml-auto hover:opacity-80">Login</Link>
       </div>

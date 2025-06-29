@@ -32,7 +32,7 @@ export default function AddSearch(){
 
     }
     return(
-        <div className="flex w-full min-h-[100vh] justify-center items-center flex-col">
+        <div className="flex w-full min-h-[90dvh] justify-center items-center flex-col">
             <form onSubmit={handleSubmit}  className="flex justify-center items-center flex-col p-4 border-2 border-gray-300 rounded-xl w-2/3">
                 <p className="text-green-400 font-bold text-center">{message}</p>
                 <label htmlFor="name" className="mb-2">Name der Suche:</label>

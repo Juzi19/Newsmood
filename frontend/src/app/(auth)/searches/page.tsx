@@ -25,7 +25,7 @@ export default async function Searches(){
     const {searches} = user!;
 
     return(
-        <div className="flex flex-col justify-center items-center w-full min-h-[90vh]">
+        <div className="flex flex-col justify-center items-center w-full min-h-[90dvh]">
             <h1 className="text-xl mb-2">Deine Suchen:</h1>
             {searches.map((search, index)=>{
                 return(

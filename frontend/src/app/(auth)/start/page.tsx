@@ -14,7 +14,7 @@ const geistmonobold = Geist_Mono({
 
 export default function Start(){
     return(
-        <div className='w-full flex flex-col items-center min-h-[90vh]'>
+        <div className='w-full flex flex-col items-center min-h-[90dvh]'>
             <h1 className={`text-center text-xl ${geistmono.className} pt-4`}>Behalten Sie die Stimmung der Berichterstattung im Blick</h1>
             <div className='m-4'>
               <img src="/newsmood.png" alt="Newsmood image" className='rounded-xl' />

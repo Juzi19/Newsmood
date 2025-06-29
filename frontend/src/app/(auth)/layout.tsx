@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <>
-        <header className="w-full flex justify-start min-h-[8vh] border-b-2 border-gray-200 items-center px-2">
+        <header className="w-full flex justify-start min-h-[8dvh] border-b-2 border-gray-200 items-center px-2">
           <Link href='/start'>
             <h1 className={`${sansita.className} text-xl`}>newsmood</h1>
           </Link>

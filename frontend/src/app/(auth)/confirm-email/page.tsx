@@ -36,7 +36,7 @@ export default function ConfirmEmail(){
     }
 
     return(
-        <div className="flex flex-col w-full justify-center items-center h-[100vh]">
+        <div className="flex flex-col w-full justify-center items-center h-[100dvh]">
             <h1 className="text-xl my-4">Email-Adresse bestätigen</h1>
             <form onSubmit={handleSubmit} className="flex flex-col w-2/3 px-4 py-4 border-2 rounded-xl border-gray-300">
                 <p className="text-center text-red-400 font-bold pb-1">{message}</p>

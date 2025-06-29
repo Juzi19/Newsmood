@@ -63,7 +63,7 @@ export default function ResetPassword(){
             
         }
     return(
-        <div className="w-full flex h-[100vh] items-center justify-center flex-col">
+        <div className="w-full flex h-[100dvh] items-center justify-center flex-col">
             <h1 className="text-2xl">Passwort zurücksetzen</h1>
             <h2 className={`${sansita.className}`}>newsmood</h2>
             <form onSubmit={handleSubmit} className="flex flex-col w-2/3 border-gray-200 border-2 rounded-xl p-4 mt-7">
